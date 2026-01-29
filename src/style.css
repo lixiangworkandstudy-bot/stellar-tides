@@ -9,6 +9,7 @@
   /* Deeper black/blue */
 }
 
+/* ATMOSPHERE 1: Deep Space Gradient */
 body {
   margin: 0;
   overflow: hidden;
@@ -16,11 +17,37 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  /* Dark Indigo to Pure Black Radial */
+  background: radial-gradient(circle at center, #10121b 0%, #000000 100%);
 }
 
 #app {
   width: 100vw;
   height: 100vh;
+  position: relative;
+}
+
+/* ATMOSPHERE 2: Cinematic Vignette (Optics) */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 10;
+  pointer-events: none;
+  /* Darken corners significantly to focus attention */
+  background: radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.6) 100%);
+}
+
+/* ATMOSPHERE 3: Film Grain (Texture) */
+body::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 11; /* Above vignette */
+  pointer-events: none;
+  opacity: 0.05; /* Subtle grain */
+  /* Base64 Noise Pattern */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
 /* Glassmorphism Classes will be applied to dynamically created elements too, 

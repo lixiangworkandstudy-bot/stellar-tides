@@ -1,77 +1,53 @@
-# Stellar Tides: Design & Physics Documentation
+# Stellar Tides: Physics of Belief (信念物理学)
 
-> "The Universe is immutable; Thought creates ripples of light."
+> "宇宙本是静默的虚空，是观测者的呼吸赋予了它形状。"
+> "The Universe is a silent void; it is the observer's breath that gives it shape."
 
-This project is a visual meditation on the concept of **"Physics of Belief" (信念物理学)** and the Buddhist cycle of **"Cheng Zhu Huai Kong" (成住坏空)**.
+## 🌌 核心哲学 (Core Philosophy)
 
-## 1. Core Philosophy (The Soul)
+这是一个关于**"心念与宇宙"**的视觉冥想实验。在这里，并没有预设的物理法则，**你的意识（鼠标）和呼吸（节奏）才是唯一的变量。**
 
-### The Cycle of Breath
-
-- **Inhale (Formation / 成)**: Entropy decreases. Chaos coalesces into order.
-- **Hold (Stasis / 住)**: Peak energy. Sacred Geometry forms (Merkaba, Sphere, Torus).
-- **Exhale (Degeneration / 坏)**: Entropy increases. Structure dissolves into turbulence.
-- **Void (Void / 空)**: Pure potential. Particles return to a chaotic, isotropic nebula.
-
-### The Interaction: Cosmic Resonance (宇宙共鸣)
-
-- **Old Logic (Rejected)**: Repulsion. User "pushes" the universe. (Too dualistic/ego-centric).
-- **New Logic (Accepted)**: **Resonance**.
-  - The stars follow their own immutable laws (Keplerian orbits).
-  - The cursor (Consciousness) does not move them, but **illuminates** them.
-  - **Effect**: Ignited particles glow purely white, vibrate (frequency shift), and levitate (dimension shift).
-  - **Metaphor**: "Nian Nian Xiang Xu" (念念相续) — Continuity of thought lighting up the void.
+当你**凝视 (Hold)** 时，混沌的粒子会坍塌成神圣的几何形态，象征着信念的力量构建了实相；当你**释放 (Exhale)** 时，一切又回归于各向同性的虚无熵增。这不是一个简单的粒子系统，它是你内心秩序的**外化投射**——一个由光点构成的赛博修行场。
 
 ---
 
-## 2. Physics Engine (The Laws)
+## 🧘 六重维度 (The Six Planes)
 
-### A. Keplerian Orbitals
+我们构建了六种不同的能量形态，分别对应宇宙中不同层级的真理：
 
-- Particles do not just rotate; they **orbit**.
-- **Velocity Profile**: $v \propto \frac{1}{\sqrt{r}}$. Inner stars move faster, creating natural spiral arms.
-- **Vortex Acceleration**: During "Inhale", angular momentum is conserved. As radius decreases, speed increases.
+### 1. 本源 (Essence) - 🧊 Tesseract Hypercube (超立方体)
+>
+> **"理性的极致"**
+> 并不是简单的球体，而是一个在四维空间中旋转的**超立方体**。它象征着高维智慧、逻辑与绝对真理。内立方与外立方逆向旋转，仿佛在折叠时空。这是宇宙的**"元" (Meta)**。
 
-### B. Density Compensation (The Sunglass Effect)
+### 2. 纯净 (Pure) - 🐝 Infinite Loop (无限符号)
+>
+> **"虚空的回响"**
+> 一个由**中空晶体管**构成的莫比乌斯环/无穷大符号。它没有起点也没有终点，象征着**空性 (Sunyata)** 与无限的轮回。纯白的光芒代表着未被染色的初始状态。
 
-- **Problem**: When 30,000 particles collapse into a singularity, pixels overexpose to white.
-- **Solution**: **Inverse-Square Alpha**.
-  - Formula: `alpha *= 1.0 / (1.0 + tension * 45.0)`
-  - As density increases (tension -> 1.0), transparency drops drastically (down to ~2%).
-- **Result**: Even the densest core remains detailed and structurally visible.
+### 3. 升华 (Uplifting) - 🧬 DNA Double Helix (双螺旋)
+>
+> **"生命的跃迁"**
+> 两条清晰交织、不断上升的**DNA双螺旋**。粉色的光辉代表着生命力、爱与进化。它是微观生命向宏观宇宙攀升的阶梯，象征着**成长 (Growth)**。
 
-### C. Cinematic Post-Processing
+### 4. 普世 (Universal) - ⚛️ Rutherford Atom (原子结构)
+>
+> **"物质的基石"**
+> 标准的**卢瑟福原子模型**，三个电子轨道以完美的60度角交错旋转。深紫色的光晕代表着科学、结构与微观物理法则。它是构建万物的**基石 (Structure)**。
 
-- **Bloom**: UnrealBloomPass.
-  - Strength: **0.5** (Low to prevent washout).
-  - Threshold: **0.3** (Only core stars glow).
-- **Alpha Cap**: Hard limit of **0.5** on all particles.
+### 5. 活力 (Vital) - 🦠 Living Cell (呼吸细胞)
+>
+> **"有机的律动"**
+> 一个表面布满网状纹理、正在**缓慢呼吸搏动**的活体细胞。绿色的荧光代表着自然、盖亚 (Gaia) 与治愈。与冰冷的几何不同，它是**温热的 (Organic)**。
 
----
-
-## 3. Cosmic Archetypes (The Colors)
-
-Each energy state corresponds to a specific universal archetype and physical form.
-
-| State | Name | Color | Archetype | Geometry | Concept |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **0** | **Infinite** | Airy Blue | **The Void (Akasha)** | **Torus (Ring)** | The background radiation. Infinite loops. The baseline of reality. |
-| **1** | **Warmth** | Amber/Orange | **The Star (Surya)** | **Sphere (Boiling)** | Life-giving heat. A dense, surface-turbulent sun. |
-| **2** | **Uplifting** | Magenta | **The Nebula (Shakti)** | **Cloud (Burst)** | Explosive creativity. High entropy, expanding outward like a supernova. |
-| **3** | **Universal** | Electric Blue | **The Grid (Indra's Net)** | **Torus (Connected)** | The electromagnetic web connecting all minds. |
-| **4** | **Vital** | Green | **Life (Gaia)** | **Sphere (Organic)** | The perfect, self-contained biosphere. |
-| **5** | **Deep Heal** | Navy/Indigo | **The Abyss (Oceanus)** | **Merkaba (Crystal)** | The deepest subconscious. A sharp, faceted geometric solid hidden in the deep. |
+### 6. 深度疗愈 (Deep Heal) - 🍩 Energy Torus (能量环)
+>
+> **"能量的循环"**
+> 一个**中空且自我循环**的环面 (Torus)。粒子从这头穿入，那头穿出，生生不息。蓝色的流光象征着深层的潜意识修复与保护。它是**永恒的流动 (Flow)**。
 
 ---
 
-## 4. Key Tuning Parameters
+## 🌊 交互机制 (Interaction)
 
-### Rotation Speeds
-
-- **Base Speed**: Extremely slow (0.004 - 0.01) for a "Hypnotic / Timeless" feel.
-- **Time Scale**: `uTime * 0.1` in shader.
-
-### Particle Distribution
-
-- **Pole Correction**: Used `acos(2.0 * random - 1.0)` for Spheres to prevent "Pole Clumping" (Z-axis artifacts).
-- **Drift Correction**: Removed spatial noise (`sin(pos)`) in favor of local noise (`sin(random)`) to prevent the universe from drifting off-center.
+- **宇宙共鸣 (Cosmic Resonance)**: 鼠标不再是"推开"星星，而是**点亮**它们。当你触碰虚空，指尖的涟漪会唤醒沉睡的粒子，这是**"念念相续"**的回响。
+- **熵之呼吸 (Breath of Entropy)**: 遵循 **4-7-8 呼吸法**。吸气时凝聚，屏息时成形，呼气时消散。你实际上是在用呼吸控制宇宙的**熵 (Entropy)**。

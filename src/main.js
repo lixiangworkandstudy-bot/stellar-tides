@@ -1,13 +1,15 @@
 
+import * as Tone from 'tone';
 import * as THREE from 'three';
 import vertexShader from './shaders/particles.vert?raw';
 import fragmentShader from './shaders/particles.frag?raw';
+import { SoundManager } from './audio/SoundManager.js';
 
 const STATES = [
-  // CORES: All reset to [[0,0], [0,0], [0,0]] to prevent diagonal/axis bias.
-  // The Sacred Geometry shader logic now handles the "Structure", so gravity should just be "Central".
-  { name: 'INFINITE', color: '#88CCFF', cores: [[0, 0], [0, 0], [0, 0]], weights: [1, 0, 0] },
-  { name: 'WARMTH', color: '#E09030', cores: [[0, 0], [0, 0], [0, 0]], weights: [1, 0, 0] },
+  // CORES: All reset to [[0,0], [0,0], [0,0]].
+  // 0. New Default: WARMTH (The Essence / Golden Spiral)
+  { name: 'ESSENCE', color: '#FFB86C', cores: [[0, 0], [0, 0], [0, 0]], weights: [1, 0, 0] },
+  { name: 'PURE', color: '#FFFFFF', cores: [[0, 0], [0, 0], [0, 0]], weights: [1, 0, 0] },
   { name: 'UPLIFTING', color: '#A020C0', cores: [[0, 0], [0, 0], [0, 0]], weights: [1, 0, 0] },
   { name: 'UNIVERSAL', color: '#448AFF', cores: [[0, 0], [0, 0], [0, 0]], weights: [1, 0, 0] },
   { name: 'VITAL', color: '#10A060', cores: [[0, 0], [0, 0], [0, 0]], weights: [1, 0, 0] },
@@ -33,6 +35,18 @@ class StellarTides {
     this.transition = 0;
 
     this.particleCount = 30000; // Performance optimized
+
+    // Audio Engine
+    try {
+      this.audio = new SoundManager();
+    } catch (e) {
+      console.warn("Audio failed to init", e);
+      this.audio = {
+        initialize: () => { },
+        update: () => { }
+      };
+    }
+
     this.setupUI();
     this.setupBreathGuide();
     this.setupParticles();
@@ -86,7 +100,10 @@ class StellarTides {
         }
       };
 
-      btn.onclick = () => this.setState(i);
+      btn.onclick = () => {
+        this.setState(i);
+        this.audio.initialize(); // Ensure audio starts on interaction
+      };
       ui.appendChild(btn);
       s.element = btn;
     });
@@ -201,9 +218,33 @@ class StellarTides {
       this.renderer.setSize(window.innerWidth, window.innerHeight);
     });
 
+    // Audio Start (User Interaction)
+    window.addEventListener('click', async () => {
+      console.log("🖱️ User Clicked: Attempting to start Audio...");
+
+      try {
+        await Tone.start();
+        console.log("✅ Tone.start() resolved. AudioContext state:", Tone.context.state);
+
+        // Simple Beep Test
+        const beep = new Tone.Synth().toDestination();
+        beep.triggerAttackRelease("C5", "8n");
+        console.log("🔊 Beep command sent.");
+
+        await this.audio.initialize();
+        console.log("🎵 Audio Engine Initialized.");
+      } catch (e) {
+        console.error("❌ Audio Init Error:", e);
+      }
+    }, { once: true });
+
+    // Smooth Mouse Tracking
+    this.targetMouse = new THREE.Vector2(0.5, 0.5);
+    this.currentMouse = new THREE.Vector2(0.5, 0.5);
+
     window.addEventListener('mousemove', (e) => {
-      this.mouse.x = e.clientX / window.innerWidth;
-      this.mouse.y = 1.0 - (e.clientY / window.innerHeight);
+      this.targetMouse.x = e.clientX / window.innerWidth;
+      this.targetMouse.y = 1.0 - (e.clientY / window.innerHeight);
     });
   }
 
@@ -269,10 +310,17 @@ class StellarTides {
     requestAnimationFrame((time) => {
       const t = time * 0.001;
       if (this.material) {
+        // Smooth Mouse Lerp
+        this.currentMouse.x += (this.targetMouse.x - this.currentMouse.x) * 0.25;
+        this.currentMouse.y += (this.targetMouse.y - this.currentMouse.y) * 0.25;
+
         this.material.uniforms.uTime.value = t;
-        this.material.uniforms.uMouse.value = this.mouse;
+        this.material.uniforms.uMouse.value = this.currentMouse;
       }
       this.updateBreath(t);
+
+      // AUDIO UPDATE
+      this.audio.update(this.breath, this.currentState);
 
       // dampening factor: When breath is high (Hold), speed drops
       // uBreath is 0..1. 1 = Hold. 

@@ -28,20 +28,18 @@ void main() {
     // Problem: 0.25 was too small -> invisible on screen
     // Solution: 0.45 covers almost the whole point sprite
     
-    // SAFE LINEAR FALLOFF (No smoothstep)
-    // 0.0 (Center) -> 1.0 (Edge 0.45)
+    // --- BALANCED VISIBILITY (Restore Glow) ---
+    // 1. Core: Defined center
     float radius = 0.45;
     float normDist = clamp(dist / radius, 0.0, 1.0);
-    float core = 1.0 - normDist; 
+    float core = pow(1.0 - normDist, 4.0); 
     
-    // Sharpen curve: HIGHER power = Sharper, smaller dot (less foggy)
-    core = pow(core, 4.0); 
+    // 2. Glow: Soft atmosphere (Restored & Widened)
+    // Reduce decay from 5.0 to 3.5 for a wider halo (Dreamy look)
+    float glow = exp(-dist * 3.5) * 0.45; 
     
-    // 2. Glow: Very subtle, just to smooth edges, not to fog
-    float glow = exp(-dist * 8.0) * 0.2; 
-    
-    // Composite: Focus heavily on the CORE
-    float light = core * 4.0 + glow;
+    // Composite: Core + Glow
+    float light = core + glow;
     
     // Color
     vec3 baseColor = vColor;
@@ -54,7 +52,9 @@ void main() {
     finalAlpha = min(finalAlpha, 1.0);
     
     // Twinkle integration
-    float twinkle = 0.5 + 0.5 * sin(uTime * 3.0 + vTwinkleRandom * 10.0);
+    // Twinkle integration
+    // Slower, more hypnotic twinkle.
+    float twinkle = 0.7 + 0.3 * sin(uTime * 2.0 + vTwinkleRandom * 20.0);
     finalAlpha *= twinkle;
     
     finalColor = aces(finalColor);
